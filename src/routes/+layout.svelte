@@ -14,7 +14,7 @@
         right: 0;
         width: 100%;
         height: 100px;
-        background-color: #a2d2ff;
+        background-color: #f5ebe0;
         text-align: center;
         font-size: 20px;
     }
