@@ -9,7 +9,7 @@
         list-style-type: none;
         padding: 5px;
         margin-top: 100px;
-        width: 200px;
+        width: 250px;
         background: #d6ccc2;
         height: 100%;
         position: fixed;

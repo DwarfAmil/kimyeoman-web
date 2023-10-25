@@ -36,7 +36,7 @@
         <IDInput input="signup" placeholder="ID" bind:id/>
         <PasswordInput input="signup" placeholder="password" bind:password/>
         <PasswordCheckInput placeholder="password check" bind:passwordCheck/>
-        <Button on:click={()=>signup()}>Sign Up</Button>
+        <Button state="signup" on:click={()=>signup()}>Sign Up</Button>
     </Box>
 </div>
 

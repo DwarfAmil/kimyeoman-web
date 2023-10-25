@@ -5,6 +5,7 @@
     import IDInput from "$lib/components/auth/IDInput.svelte";
     import Button from "$lib/components/auth/Button.svelte";
     import axios from "axios";
+    import SignUpText from "$lib/components/auth/SignUpText.svelte";
 
     let id = "";
     let password = "";
@@ -32,7 +33,8 @@
         <Title title="signin">Sign In</Title>
         <IDInput input="signin" placeholder="ID" bind:id/>
         <PasswordInput input="signin" placeholder="password" bind:password/>
-        <Button on:click={()=>signin()}>Sign Up</Button>
+        <Button state="signin" on:click={()=>signin()}>Sign Up</Button>
+        <SignUpText/>
     </Box>
 </div>
 
