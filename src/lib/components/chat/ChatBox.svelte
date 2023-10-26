@@ -1,10 +1,10 @@
 <script>
     export let state = "";
-    export let massage = "";
+    export let message = "";
 </script>
 
 <div class="line">
-    <span class="{state}">{massage}</span>
+    <span class="{state}">{message}</span>
 </div>
 
 <style>
@@ -13,7 +13,7 @@
         margin: 10px 0;
     }
 
-    .ai{
+    .bot{
         padding: 10px;
         border-radius: 10px;
         background-color: #f5ebe0;

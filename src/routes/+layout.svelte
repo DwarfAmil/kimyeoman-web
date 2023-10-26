@@ -17,5 +17,6 @@
         background-color: #f5ebe0;
         text-align: center;
         font-size: 20px;
+        font-family: "오아 고딕 ExtraBold";
     }
 </style>

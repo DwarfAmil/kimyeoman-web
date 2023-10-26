@@ -2,7 +2,7 @@
     export let input = "";
 </script>
 
-<input class="input" bind:value={input}>
+<input class="input" bind:value={input} on:keydown>
 
 <style>
     .input {
