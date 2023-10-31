@@ -11,36 +11,66 @@
     import CharBtn from "$lib/components/chat/CharBtn.svelte";
 
     let input = "";
+    let userChat = "";
     let char = "호두";
     let charEn = "Hutao";
+    let answer = "";
+    let enInput = "";
 
     const chat = async   () => {
-        console.log(input)
+        userChat = input
+        input = ""
+        console.log(userChat)
 
         $chatHistory.push({
             sender: "user",
-            message: input
+            message: userChat
         })
 
         chatHistory.update($chatHistory => {
             return $chatHistory
         })
 
+        await translate_ko_to_en(userChat)
+        console.log(enInput)
+
         const client = new Client({
-            uri: "https://ruling-lol-rejected-automatic.trycloudflare.com/api"
+            uri: "https://ultra-clips-moderators-mitsubishi.trycloudflare.com/api"
         })
 
-        client.chat(input, {character: charEn}).then(res => {
+        await client.chat(enInput, {character: charEn}).then(res => {
             console.log(res)
+            answer = res
+        })
+
+        await translate_en_to_ko(answer)
+    }
+
+    const translate_ko_to_en = async (text: string) => {
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/translator/translate", {lang: "EN-US", text})
+            enInput = response.data.text
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    const translate_en_to_ko = async (text: string) => {
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/translator/translate", {lang: "KO", text})
             $chatHistory.push({
                 sender: "bot",
-                message: res
+                message: response.data.text
             })
 
             chatHistory.update($chatHistory => {
                 return $chatHistory
             })
-        })
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     const charChange = (charName: string, charNameEn: string) => {
@@ -51,7 +81,7 @@
 
 <CharBar>
     <CharBtn on:click={()=>charChange("호두", "Hutao")}>호두</CharBtn>
-    <CharBtn on:click={()=>charChange("라이덴 쇼군", "Raiden")}>라이덴 쇼군</CharBtn>
+    <CharBtn on:click={()=>charChange("라이덴 쇼군", "Raiden Shogun")}>라이덴 쇼군</CharBtn>
     <CharBtn on:click={()=>charChange("감우", "Gamyu")}>감우</CharBtn>
     <CharBtn on:click={()=>charChange("각청", "Keqing")}>각청</CharBtn>
 </CharBar>

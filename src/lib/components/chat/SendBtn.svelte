@@ -9,5 +9,6 @@
         border: 1px solid #f5dcce;
         background-color: #f5ebe0;
         margin: 5px;
+        font-family: "나눔스퀘어 네오 Regular";
     }
 </style>
