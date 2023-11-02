@@ -19,7 +19,10 @@
         try {
             const response = await axios.post("http://localhost:8000/auth/sign-in", user);
             console.log(response);
+
+            localStorage.setItem("token", response.data.token);
             alert("로그인 성공");
+            window.location.href = "/";
         }
         catch (error) {
             console.log(error);
@@ -33,7 +36,7 @@
         <Title title="signin">Sign In</Title>
         <IDInput input="signin" placeholder="ID" bind:id/>
         <PasswordInput input="signin" placeholder="password" bind:password/>
-        <Button state="signin" on:click={()=>signin()}>Sign Up</Button>
+        <Button state="signin" on:click={()=>signin()}>Sign In</Button>
         <SignUpText/>
     </Box>
 </div>

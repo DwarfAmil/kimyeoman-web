@@ -1,0 +1,6 @@
+POST localhost:7860/api/v1/chat
+Content-Type: application/json
+
+{
+
+}

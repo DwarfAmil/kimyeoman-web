@@ -6,5 +6,5 @@ export interface ChatHistory {
 }
 
 export const chatHistory = writable<Array<ChatHistory>>([
-    { sender: "bot", message: "Hello" },
+    // { sender: "bot", message: "여행자!" },
 ]);
