@@ -1,3 +1,7 @@
+<script>
+    import "./styles.css"
+</script>
+
 <header>
     <h2>kimyeoman</h2>
 </header>
