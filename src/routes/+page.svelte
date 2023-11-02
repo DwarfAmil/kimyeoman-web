@@ -13,6 +13,7 @@
     import CharBtn from "$lib/components/chat/CharBtn.svelte"
     import {get} from "svelte/store"
     import {onMount} from "svelte"
+    // import "dotenv/config"
 
     let input = ""
     let userChat = ""
@@ -95,7 +96,7 @@
         await translate_ko_to_en(userChat, history)
 
         const client = new Client({
-            uri: "https://mild-finland-dimensional-dense.trycloudflare.com/api"
+            uri: import.meta.env.CHAR_API_URL
         })
 
         await client.chat(enInput, {character: charEn, instruction_template: "CharTemplate"}).then(res => {
