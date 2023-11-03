@@ -35,7 +35,7 @@
         if (localStorage.getItem("token") != null) {
             let token = localStorage.getItem("token")
             try {
-                const res = await axios.post("http://127.0.0.1:8000/auth/", {token: token});
+                const res = await axios.post(envVar.api + "/auth/", {token: token});
 
                 if (res.data.error != null) {
                     console.log(res.data.error);
@@ -59,7 +59,7 @@
         }
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/chat/download", {char: 1})
+            const response = await axios.post(envVar.api + "/chat/download", {char: 1})
             $chatHistory = JSON.parse(response.data.chat)
         }
         catch (error) {

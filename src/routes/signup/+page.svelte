@@ -6,6 +6,7 @@
     import Button from "$lib/components/auth/Button.svelte";
     import PasswordInput from "$lib/components/auth/PasswordInput.svelte";
     import PasswordCheckInput from "$lib/components/auth/PasswordCheckInput.svelte";
+    import {envVar} from "../../envVar";
 
     let id = "";
     let password = "";
