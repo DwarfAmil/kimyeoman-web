@@ -93,7 +93,7 @@
 
         input = ""
 
-        await translate_ko_to_en(userChat, history)
+        await translate_ko_to_en(userChat)
 
         const client = new Client({
             uri: envVar.charApi
@@ -106,17 +106,13 @@
         await translate_en_to_ko(answer)
     }
 
-    const translate_ko_to_en = async (text: string, history: string) => {
+    const translate_ko_to_en = async (text: string) => {
         try {
-            const res = await axios.post(envVar.api + "/translator/translate", {
-                lang: "EN-US",
-                text: history
-            }) as TranslatorResponse
             const response = await axios.post(envVar.api + "/translator/translate", {
                 lang: "EN-US",
-                text
+                text: text
             }) as TranslatorResponse
-            enInput = enInput + "\n\n" + response.data.text
+            enInput = response.data.text
             console.log(enInput)
         } catch (error) {
             console.log(error)
