@@ -6,6 +6,7 @@
     import Button from "$lib/components/auth/Button.svelte";
     import axios from "axios";
     import SignUpText from "$lib/components/auth/SignUpText.svelte";
+    import {envVar} from "../../envVar.js";
 
     let id = "";
     let password = "";
@@ -17,7 +18,7 @@
         const user = {id, password};
 
         try {
-            const response = await axios.post("http://localhost:8000/auth/sign-in", user);
+            const response = await axios.post(envVar.api "/auth/sign-in", user);
             console.log(response);
 
             localStorage.setItem("token", response.data.token);

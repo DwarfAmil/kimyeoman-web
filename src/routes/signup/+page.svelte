@@ -19,7 +19,7 @@
         const user = {id, password};
 
         try {
-            const response = await axios.post("http://localhost:8000/auth/sign-up", user);
+            const response = await axios.post(envVar.api + "h/auth/sign-up", user);
             alert(response.data.message);
             window.location.href = "/signin";
         }

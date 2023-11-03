@@ -13,7 +13,7 @@
     import CharBtn from "$lib/components/chat/CharBtn.svelte"
     import {get} from "svelte/store"
     import {onMount} from "svelte"
-    // import "dotenv/config"
+    import {envVar} from "../envVar";
 
     let input = ""
     let userChat = ""
@@ -96,7 +96,7 @@
         await translate_ko_to_en(userChat, history)
 
         const client = new Client({
-            uri: import.meta.env.CHAR_API_URL
+            uri: envVar.charApi
         })
 
         await client.chat(enInput, {character: charEn, instruction_template: "CharTemplate"}).then(res => {
@@ -108,11 +108,11 @@
 
     const translate_ko_to_en = async (text: string, history: string) => {
         try {
-            const res = await axios.post("http://127.0.0.1:8000/translator/translate", {
+            const res = await axios.post(envVar.api + "/translator/translate", {
                 lang: "EN-US",
                 text: history
             }) as TranslatorResponse
-            const response = await axios.post("http://127.0.0.1:8000/translator/translate", {
+            const response = await axios.post(envVar.api + "/translator/translate", {
                 lang: "EN-US",
                 text
             }) as TranslatorResponse
@@ -125,7 +125,7 @@
 
     const translate_en_to_ko = async (text: string) => {
         try {
-            const response = await axios.post("http://127.0.0.1:8000/translator/translate", {
+            const response = await axios.post(envVar.api + "/translator/translate", {
                 lang: "KO",
                 text
             }) as TranslatorResponse
@@ -143,7 +143,7 @@
     const charChange = async (charName: string, charNameEn: string) => {
         if (charEn == "Hutao") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/upload", {
+                const response = await axios.post(envVar.api + "/chat/upload", {
                     char: 1,
                     chat: JSON.stringify($chatHistory)
                 })
@@ -154,7 +154,7 @@
         }
         else if (charEn == "Raiden_Shogun") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/upload", {
+                const response = await axios.post(envVar.api + "/chat/upload", {
                     char: 2,
                     chat: JSON.stringify($chatHistory)
                 })
@@ -165,7 +165,7 @@
         }
         else if (charEn == "Gamyu") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/upload", {
+                const response = await axios.post(envVar.api + "/chat/upload", {
                     char: 3,
                     chat: JSON.stringify($chatHistory)
                 })
@@ -176,7 +176,7 @@
         }
         else if (charEn == "Keqing") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/upload", {
+                const response = await axios.post(envVar.api + "/chat/upload", {
                     char: 4,
                     chat: JSON.stringify($chatHistory)
                 })
@@ -193,7 +193,7 @@
 
         if (charEn == "Hutao") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/download", {char: 1})
+                const response = await axios.post(envVar.api + "/chat/download", {char: 1})
                 $chatHistory = JSON.parse(response.data.chat)
                 console.log($chatHistory)
             } catch (error) {
@@ -202,7 +202,7 @@
         }
         else if (charEn == "Raiden_Shogun") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/download", {char: 2})
+                const response = await axios.post(envVar.api + "/chat/download", {char: 2})
                 $chatHistory = JSON.parse(response.data.chat)
                 console.log($chatHistory)
             } catch (error) {
@@ -211,7 +211,7 @@
         }
         else if (charEn == "Gamyu") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/download", {char: 3})
+                const response = await axios.post(envVar.api + "/chat/download", {char: 3})
                 $chatHistory = JSON.parse(response.data.chat)
                 console.log($chatHistory)
             } catch (error) {
@@ -220,7 +220,7 @@
         }
         else if (charEn == "Keqing") {
             try {
-                const response = await axios.post("http://127.0.0.1:8000/chat/download", {char: 4})
+                const response = await axios.post(envVar.api + "/chat/download", {char: 4})
                 $chatHistory = JSON.parse(response.data.chat)
                 console.log($chatHistory)
             } catch (error) {
